@@ -21,6 +21,7 @@
     * [常用git命令](#常用git命令)
     * [分支约定](#分支约定)
     * [文档约定](#文档约定)  
+    * [Git提交规范](#Git提交规范)  
 
 ## <a name='环境搭建'>环境搭建</a>
 1. <a name='安装编辑器'>安装编辑器</a>  
@@ -92,7 +93,7 @@
     
     # 本地合并到"develop"分支并提交，请求测试
     git add . // 开发完成后，添加所有新增/更改文件到暂存区
-    git commit -m "feat:此处填写本次修改日志便于日后查阅" // 提交暂存到本地仓库，feat代表新增文件或功能
+    git commit -m "feat(影响的范围):此处填写本次修改日志便于日后查阅" // 提交暂存到本地仓库，feat代表新增文件或功能
     git checkout develop // 切换到"develop"分支
     git pull // 此处一定先取回远程仓库的变化，并解决代码冲突
     git merge --no-ff -m "merge:此处填写本次合并日志便于日后查阅" feat/功能代号 // 合并"feat/功能代号"分支中暂存区文件到"develop"分支
@@ -154,4 +155,42 @@
 * 使用中文的标点符号，句号是 `。` 不是 `.`，破折号是 `——` 不是 `-`；
 * 重点词句需 `**强调**`；
 * 代码缩进使用两个空格，禁止使用 Tab；
+
+### <a name='Git提交规范'>Git提交规范</a>  
+**type:**   
+* feat：新功能（feature）
+* fix：修补bug
+* docs：文档（documentation）
+* style： 格式（不影响代码运行的变动）
+* refactor：重构（即不是新增功能，也不是修改bug的代码变动）
+* test：增加测试
+* chore：构建过程或辅助工具的变动
+
+**scope:**   
+scope 用于说明 commit 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不同  
+
+**subject:**   
+subject 是 commit 目的的简短描述，不超过50个字符  
+* 以动词开头，使用第一人称现在时，比如 change，而不是 changed 或 changes
+* 第一个字母小写
+* 结尾不加句号（.）
+
+```shell
+# 简易提交
+git commit -m type(scope): subject
+
+# 详细提交
+git commit
+
+feat: 初始化全局样式
+
+初始化全局样式，保持不同浏览器默认样式一致
+
+- 安装 Sass 预处理器
+- 创建自定义全局样式文件
+- 保持不同浏览器默认样式一致
+
+Issue #1, #2
+Close #1
+```  
 
